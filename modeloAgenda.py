@@ -7,22 +7,20 @@ class agenda():
         self.id = id
         self.propietario = propietario
     
-    
     def save(self):
         query = "INSERT INTO "+agenda.tableName+"(propietario) VALUES (?)"
         values = (self.propietario)
         agenda.DBS.ejecutar(query, values)
 
-    @classmethod
-    def mostrar(cls, busca):
+    def mostrar(self):
         query = "SELECT * FROM "+agenda.tableName+" WHERE propietario = ?"
-        return agenda.DBS.ejecutar(query, busca)
+        valor = self.propietario
+        return agenda.DBS.ejecutar(query, valor)
 
-
-    @classmethod
-    def delete(cls, busca):
+    def delete(self):
         query = "DELETE FROM "+agenda.tableName+" WHERE propietario = ?"
-        agenda.DBS.ejecutar(query, busca)
+        valor = (self.propietario)
+        agenda.DBS.ejecutar(query, valor)
 
     def update(self):
         query = "UPDATE "+agenda.tableName+" SET propietario = ? WHERE id = ? "

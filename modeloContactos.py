@@ -16,17 +16,14 @@ class contacto():
         values = (self.agenda,self.nombre,self.telefono,self.email)
         contacto.DBS.ejecutar(query, values)
 
-    @classmethod
-    def mostrar(cls,miagenda, busca):
+    def mostrar(self):
         query = "SELECT * FROM "+contacto.tableName+" WHERE agenda = ? AND nombre = ?"
-        valor = (miagenda, busca)
+        valor = (self.agenda, self.nombre)
         return contacto.DBS.ejecutar(query, valor)
 
-
-    @classmethod
-    def delete(cls, miagenda, busca):
+    def delete(self):
         query = "DELETE FROM "+contacto.tableName+" WHERE agenda = ? AND nombre = ? "
-        valor = (miagenda, busca)
+        valor = (self.agenda, self.nombre)
         contacto.DBS.ejecutar(query, valor)
 
     def update(self):

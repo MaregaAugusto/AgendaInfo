@@ -42,14 +42,16 @@ class ControladorContacto():
     def Eliminar(self):
         texto = "Eliminar"
         dato = self.__vistaContacto.PedirDatos(texto,"nombre")
-        contacto.delete(self.agenda,dato["nombre"])
+        r = contacto(self.agenda, dato['nombre'], None, None)
+        r.delete()
         self.Home()
 
     def Buscar(self, tex = ''):
         # tex esta para comprobar la existencia cuando tengo que actualizar
         texto = tex or "Buscar" 
         dato = self.__vistaContacto.PedirDatos(texto,"nombre")
-        r = contacto.mostrar(self.agenda, dato['nombre'])
+        r = contacto(self.agenda, dato['nombre'], None, None)
+        r = r.mostrar()
         if tex:
             return r
         else:

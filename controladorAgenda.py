@@ -57,14 +57,16 @@ class Controlador():
     def Eliminar(self):
         texto = "Eliminar"
         dato = self.__vistaAgenda.PedirDatos(texto,"propietario")
-        agenda.delete(dato["propietario"])
+        r = agenda(dato['propietario'])
+        r.delete()
         self.Home()
 
     def Buscar(self, tex = ''):
         # tex esta para comprobar la existencia cuando tengo que actualizar
         texto = tex or "Buscar" 
         dato = self.__vistaAgenda.PedirDatos(texto,"propietario")
-        r = agenda.mostrar(dato['propietario'])
+        r = agenda(dato['propietario'])
+        r = r.mostrar()
         if tex:
             return r
         else:
